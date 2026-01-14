@@ -77,16 +77,3 @@ fdt_fixup_and_load(Fdt_Header *fdt)
 
 	efi_install_configuration_table(EFI_DTB_TABLE_GUID, copy);
 }
-
-void
-fdt_fixup(void)
-{
-	Fdt_Header *fdt = search_for_devicetree();
-
-	if (!fdt) {
-		pr_info("DeviceTree: not found\n");
-		return;
-	}
-
-	fdt_fixup_and_load(fdt);
-}
