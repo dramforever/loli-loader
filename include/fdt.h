@@ -20,6 +20,9 @@ typedef struct {
 	uint32_t offMapRsvMap;
 	uint32_t version;
 	uint32_t lastCompVersion;
+	uint32_t bootCpuidPhys;
+	uint32_t sizeDtStrings;
+	uint32_t sizeDtStruct;
 } Fdt_Header;
 
 #pragma pack(pop)
