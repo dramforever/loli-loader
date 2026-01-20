@@ -13,16 +13,10 @@
 #include <efidevicetree.h>
 
 #include <fdt.h>
+#include <fdt_iter.h>
 #include <interaction.h>
 #include <memory.h>
 #include <misc.h>
-
-static uint32_t
-be32_to_cpu(uint32_t val)
-{
-	uint8_t *data = (uint8_t*)&val;
-	return (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
-}
 
 static Fdt_Header *
 search_for_devicetree(void)

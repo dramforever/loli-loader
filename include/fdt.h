@@ -29,4 +29,19 @@ typedef struct {
 
 void fdt_fixup_and_load(Fdt_Header *fdt);
 
+/* Useful helpers for accessing values inside FDT */
+
+static inline uint32_t
+read_be32(const char *data)
+{
+	uint8_t *p = (uint8_t*)data;
+	return (p[0] << 24) | (p[1] << 16) | (p[2] << 8) | p[3];
+}
+
+static inline uint32_t
+be32_to_cpu(uint32_t val)
+{
+	return read_be32((char*)&val);
+}
+
 #endif	// __LOLI_FDT_H_INC__
