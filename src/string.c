@@ -19,6 +19,15 @@ strlen(const char *p)
 	return len;
 }
 
+size_t
+strnlen(const char *p, size_t maxlen)
+{
+	size_t len = 0;
+	while (*p++ && len < maxlen)
+		len++;
+	return len;
+}
+
 char *
 strcpy(char *dst, const char *src)
 {

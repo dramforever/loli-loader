@@ -12,6 +12,7 @@
 #include <stdarg.h>
 
 size_t strlen(const char *p);
+size_t strnlen(const char *p, size_t maxlen);
 char *strcpy(char *dst, const char *src);
 int strcmp(const char *s1, const char *s2);
 int strncmp(const char *s1, const char *s2, size_t n);
