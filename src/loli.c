@@ -131,6 +131,19 @@ load_and_validate_entry(const char *p, Boot_Entry *entry)
 		pr_info("FDT: (none)\n");
 	}
 
+	char *fdtdir = menu_get_pair(p, "fdtdir");
+	if (!fdtdir)
+		fdtdir = menu_get_pair(p, "devicetreedir");
+
+	if (fdtdir) {
+		pr_info("FDTDIR: %s\n", fdtdir);
+		void *fdt = load_from_fdtdir(fdtdir);
+		if (fdt)
+			fdt_fixup_and_load(fdt);
+	} else {
+		pr_info("FDTDIR: (none)\n");
+	}
+
 	char *initrd = menu_get_pair(p, "initrd");
 	if (initrd) {
 		int64_t initrdSize = file_get_size(initrd);

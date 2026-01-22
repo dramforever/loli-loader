@@ -28,6 +28,7 @@ typedef struct {
 #pragma pack(pop)
 
 void fdt_fixup_and_load(Fdt_Header *fdt);
+void *load_from_fdtdir(const char *path);
 
 /* Useful helpers for accessing values inside FDT */
 
