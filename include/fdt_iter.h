@@ -37,5 +37,6 @@ struct Fdt_Iter {
 
 int fdt_iter_init(const char *fdt, size_t size, struct Fdt_Iter *iter);
 int fdt_iter_step(struct Fdt_Iter *iter);
+const char *fdt_get_compatible(const char *fdt);
 
 #endif	// __LOLI_FDT_ITER_H_INC__

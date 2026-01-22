@@ -137,3 +137,34 @@ fdt_iter_step(struct Fdt_Iter *iter)
 		}
 	}
 }
+
+const char *
+fdt_get_compatible(const char *fdt)
+{
+	struct Fdt_Iter iter;
+	if (fdt_iter_init(fdt, (size_t)-1, &iter) < 0)
+		return NULL;
+
+	/* Skip over the beginning FDT_BEGIN_NODE */
+
+	if (fdt_iter_step(&iter) <= 0 || iter.opcode != FDT_BEGIN_NODE)
+		return NULL;
+
+	int ret;
+
+	while ((ret = fdt_iter_step(&iter)) > 0) {
+		if (iter.opcode != FDT_PROP)
+			return NULL;
+		if (strcmp(iter.name, "compatible") == 0)
+			break;
+	}
+
+	if (ret <= 0)
+		return NULL;
+
+	/* Sanity check */
+	if (iter.data_len <= 0 || iter.data[iter.data_len - 1] != 0)
+		return NULL;
+
+	return iter.data;
+}
